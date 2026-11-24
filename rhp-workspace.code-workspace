@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "/RHP/CORE [S4H_100_EN]",
+			"uri": "abap:/repotree-v1/S4H_100_EN/System Library/(RHP)CORE"
+		}
+	],
+	"settings": {}
+}
