@@ -18,6 +18,18 @@ para sincronizarlos; el código vive en los subdirectorios.
 - Para añadir o quitar un repositorio del proyecto, edita `repos.txt` y ejecuta
   `./sync-repos.sh` (o `sync-repos.ps1`); ver [`README.md`](README.md).
 
+## Instrucciones para agentes
+
+- Las instrucciones para agentes viven en ficheros **`AGENTS.md`**, tanto en el workspace como
+  en cada repositorio que las tenga (hoy, `rhp-docs-development-guide`).
+- **No se crean ficheros `CLAUDE.md`.** Claude Code carga `AGENTS.md` automáticamente solo si
+  no hay ningún `CLAUDE.md` en el directorio de trabajo ni por encima: un `CLAUDE.md` en el
+  workspace o en un repositorio impediría que se cargara su `AGENTS.md`.
+- Al trabajar desde el raíz del workspace, el `AGENTS.md` de un repositorio no se carga por
+  adelantado: solo llega cuando se lee un fichero de ese repositorio. Si la tarea cae en un
+  repositorio con `AGENTS.md`, **léelo explícitamente antes de empezar** y aplica sus reglas
+  dentro de ese repositorio.
+
 ## Desarrollo y análisis ABAP
 
 **Antes de desarrollar, revisar, analizar o documentar cualquier objeto ABAP de RHP, lee la
