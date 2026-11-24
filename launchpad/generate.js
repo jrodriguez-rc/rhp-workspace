@@ -16,7 +16,11 @@ const yaml = require("js-yaml");
 // --- Configuración común -----------------------------------------------------
 const UI5_VERSION = "1.146.0"; // >= mayor minUI5Version de las aplicaciones
 const UI5_CDN = "https://ui5.sap.com";
-const BACKEND = { path: "/sap", url: "https://rstls4h.resultoconsultoria.com:44300", client: "100" };
+const BACKEND_URL = "https://rstls4h.resultoconsultoria.com:44300";
+// ws: reenvía también los WebSocket (canal APC /sap/bc/apc/sap/odata de los side-effects
+// por eventos de RAP). El APC rechaza con 403 el handshake si Origin no es un origen
+// permitido (http://localhost:8080 no lo es), así que el proxy lo reescribe al del backend.
+const BACKEND = { path: "/sap", url: BACKEND_URL, client: "100", ws: true, headers: { origin: BACKEND_URL } };
 const THEME = "sap_horizon";
 const FLP_PATH = "/flp.html";
 // ------------------------------------------------------------------------------
