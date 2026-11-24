@@ -35,7 +35,7 @@ while read -r dir url _; do
       failed+=("$dir"); continue
     fi
     echo "[clone] $dir"
-    if git clone -q "$url" "$path" </dev/null; then cloned+=("$dir"); else failed+=("$dir"); fi
+    if git clone -q -c core.longpaths=true "$url" "$path" </dev/null; then cloned+=("$dir"); else failed+=("$dir"); fi
     continue
   fi
 

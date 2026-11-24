@@ -63,7 +63,7 @@ foreach ($line in Get-Content $Master) {
             $failed.Add($dir); continue
         }
         Write-Host "[clone] $dir" -ForegroundColor Cyan
-        git clone -q $url $path
+        git clone -q -c core.longpaths=true $url $path
         if ($LASTEXITCODE -eq 0) { $cloned.Add($dir) } else { $failed.Add($dir) }
         continue
     }
