@@ -9,7 +9,7 @@ para sincronizarlos; el código vive en los subdirectorios.
 - **Cada subdirectorio `rhp-*` es un repositorio git independiente**, con su propio remoto e
   historial, y está excluido en el `.gitignore` del workspace. Los cambios en su código se
   commitean **dentro de ese repositorio**, nunca en el raíz.
-- El repositorio raíz solo versiona `repos.txt`, los scripts `sync-repos.*`, el `README.md`, `CLAUDE.md`,
+- El repositorio raíz solo versiona `repos.txt`, los scripts `sync-repos.*`, el `README.md`,
   este fichero y el `.gitignore`.
 - Grupos de repositorios:
   - `rhp-docs-development-guide` — guías de desarrollo (Markdown, sin código).

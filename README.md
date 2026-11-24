@@ -12,7 +12,6 @@ Este repositorio **no contiene el código** de los proyectos: solo el maestro de
 | [`sync-repos.sh`](sync-repos.sh) | Script de sincronización para Linux, macOS y WSL. |
 | [`sync-repos.ps1`](sync-repos.ps1) | Script de sincronización para Windows (PowerShell). |
 | [`AGENTS.md`](AGENTS.md) | Instrucciones para agentes de IA al trabajar en el workspace. |
-| [`CLAUDE.md`](CLAUDE.md) | Punto de entrada para Claude Code; remite a `AGENTS.md`. |
 | [`.gitignore`](.gitignore) | Excluye los repositorios clonados y el fichero `.env`. |
 
 ## Requisitos
