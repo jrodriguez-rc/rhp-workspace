@@ -4,6 +4,8 @@
 # - Si el directorio no existe, lo clona.
 # - Si existe, hace `git pull --ff-only` (nunca crea merges ni pisa cambios locales).
 #   Se salta los repositorios con cambios sin commitear.
+# - Distingue los repositorios que han traído commits nuevos (con el rango y el número de
+#   commits) de los que ya estaban al día; en pantalla solo se listan los que cambian.
 # - Añade al .gitignore cualquier repositorio que todavía no esté.
 #
 # Uso: ./sync-repos.sh [--clone-only]
@@ -16,7 +18,7 @@ GITIGNORE="$ROOT/.gitignore"
 CLONE_ONLY=0
 [[ "${1:-}" == "--clone-only" ]] && CLONE_ONLY=1
 
-cloned=() updated=() skipped=() failed=()
+cloned=() updated=() uptodate=() skipped=() failed=()
 
 while read -r dir url _; do
   [[ -z "${dir:-}" || "$dir" == \#* ]] && continue
@@ -45,12 +47,27 @@ while read -r dir url _; do
   fi
 
   branch="$(git -C "$path" branch --show-current)"
-  echo "[pull] $dir ($branch)"
-  if git -C "$path" pull -q --ff-only </dev/null; then updated+=("$dir"); else failed+=("$dir"); fi
+  before="$(git -C "$path" rev-parse --short HEAD)"
+  if ! git -C "$path" pull -q --ff-only </dev/null; then
+    echo "[error] $dir ($branch): falló git pull"
+    failed+=("$dir"); continue
+  fi
+  after="$(git -C "$path" rev-parse --short HEAD)"
+
+  if [[ "$before" == "$after" ]]; then
+    uptodate+=("$dir")
+  else
+    count="$(git -C "$path" rev-list --count "$before..$after")"
+    summary="$dir ($branch): $before..$after, $count commit(s)"
+    echo "[update] $summary"
+    updated+=("$summary")
+  fi
 done < "$MASTER"
 
 echo
-echo "Clonados: ${#cloned[@]}  Actualizados: ${#updated[@]}  Saltados: ${#skipped[@]}  Fallidos: ${#failed[@]}"
-(( ${#skipped[@]} )) && printf '  saltado: %s\n' "${skipped[@]}"
-(( ${#failed[@]} )) && printf '  fallido: %s\n' "${failed[@]}"
+echo "Clonados: ${#cloned[@]}  Actualizados: ${#updated[@]}  Al día: ${#uptodate[@]}  Saltados: ${#skipped[@]}  Fallidos: ${#failed[@]}"
+(( ${#cloned[@]} ))  && printf '  clonado:     %s\n' "${cloned[@]}"
+(( ${#updated[@]} )) && printf '  actualizado: %s\n' "${updated[@]}"
+(( ${#skipped[@]} )) && printf '  saltado:     %s\n' "${skipped[@]}"
+(( ${#failed[@]} ))  && printf '  fallido:     %s\n' "${failed[@]}"
 (( ${#failed[@]} == 0 ))

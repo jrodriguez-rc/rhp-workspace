@@ -57,7 +57,14 @@ Para cada repositorio listado en `repos.txt`:
 - **Si tiene cambios sin commitear**, lo salta y lo indica en el resumen.
 - **Si no está en el `.gitignore`**, lo añade.
 
-Al terminar muestra un resumen (clonados, actualizados, saltados y fallidos) y devuelve un código de error si alguno ha fallado.
+Durante la ejecución solo se muestran los repositorios en los que pasa algo (clonado, actualizado, saltado o con error); los que ya estaban al día no generan salida. Al terminar muestra un resumen con el recuento de clonados, actualizados, al día, saltados y fallidos, seguido del detalle de cada uno. Para los actualizados indica la rama, el rango de commits y cuántos ha traído:
+
+```
+Clonados: 0  Actualizados: 1  Al día: 36  Saltados: 0  Fallidos: 0
+  actualizado: rhp-abap-core (main): 75094e3..b76313c, 1 commit(s)
+```
+
+Si algún repositorio falla, el script devuelve un código de error.
 
 Para clonar solo los repositorios que falten, sin actualizar los existentes:
 
