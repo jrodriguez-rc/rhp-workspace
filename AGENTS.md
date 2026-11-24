@@ -10,7 +10,11 @@ para sincronizarlos; el código vive en los subdirectorios.
   historial, y está excluido en el `.gitignore` del workspace. Los cambios en su código se
   commitean **dentro de ese repositorio**, nunca en el raíz.
 - El repositorio raíz solo versiona `repos.txt`, los scripts `sync-repos.*`, el `README.md`,
-  este fichero y el `.gitignore`.
+  este fichero, el `.gitignore` y el launchpad local (`launchpad/`).
+- [`launchpad/`](launchpad/) no es un repositorio: es un sandbox de Fiori launchpad que sirve
+  todas las aplicaciones `rhp-ui-*` desde su código local. Su configuración UI5 (`ui5*.yaml`) se
+  genera con `generate.js` a partir de `repos.txt` y de los inbounds de cada `manifest.json`: no
+  se edita a mano. Ver [`launchpad/README.md`](launchpad/README.md).
 - Grupos de repositorios:
   - `rhp-docs-development-guide` — guías de desarrollo (Markdown, sin código).
   - `rhp-abap-core` — backend ABAP de `/RHP/CORE`, serializado con abapGit (`objects/`, `tabledata/`).

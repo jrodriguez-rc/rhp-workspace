@@ -1,0 +1,20 @@
+{
+  "name": "rhp-launchpad",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Launchpad Fiori local con todas las aplicaciones rhp-ui-* del workspace",
+  "scripts": {
+    "generate": "node generate.js",
+    "start": "node generate.js && fiori run --config ./ui5.yaml --open \"flp.html?sap-ui-xx-viewCache=false#Shell-home\"",
+    "start-mock": "node generate.js && fiori run --config ./ui5-mock.yaml --open \"flp.html?sap-ui-xx-viewCache=false#Shell-home\""
+  },
+  "devDependencies": {
+    "@babel/core": "^7.29.13",
+    "@babel/preset-typescript": "^7.28.5",
+    "@sap-ux/ui5-middleware-fe-mockserver": "^2.4.13",
+    "@sap/ux-ui5-tooling": "^1.26.0",
+    "@ui5/cli": "^4.0.33",
+    "babel-preset-transform-ui5": "^7.11.1",
+    "js-yaml": "^5.5.0"
+  }
+}

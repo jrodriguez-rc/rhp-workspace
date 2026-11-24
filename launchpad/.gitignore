@@ -1,0 +1,5 @@
+node_modules/
+
+# Generados por generate.js en cada arranque
+ui5.yaml
+ui5-mock.yaml

@@ -1,0 +1,20 @@
+{
+  "_version": "1.60.0",
+  "sap.app": {
+    "id": "com.rhp.launchpad",
+    "type": "component",
+    "title": "RHP - Launchpad local",
+    "description": "Proyecto contenedor del launchpad local: no es una aplicación y no genera tile",
+    "applicationVersion": {
+      "version": "0.0.1"
+    }
+  },
+  "sap.ui5": {
+    "dependencies": {
+      "minUI5Version": "1.136.0",
+      "libs": {
+        "sap.ui.core": {}
+      }
+    }
+  }
+}
