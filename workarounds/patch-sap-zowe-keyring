@@ -1,0 +1,89 @@
+#!/usr/bin/env python3
+"""Parche local para las extensiones SAP de VS Code en WSL (VS Code Server).
+
+El cargador del Zowe secrets SDK usa process.report.getReport().header para
+distinguir glibc/musl. En el extension host de VS Code Server getReport()
+devuelve undefined, el módulo nativo no carga y las contraseñas de los
+sistemas SAP no se guardan (Dummy store -> 401).
+
+Issue: https://github.com/SAP/open-ux-tools/issues/5440
+
+Uso:
+  patch-sap-zowe-keyring            aplica el parche donde haga falta
+  patch-sap-zowe-keyring --check    solo informa, no modifica nada
+  patch-sap-zowe-keyring --restore  restaura los originales (*.rhp-orig)
+
+Tras aplicarlo o restaurarlo: Developer: Reload Window en VS Code.
+"""
+import glob
+import os
+import shutil
+import sys
+
+EXT_DIRS = [os.path.expanduser(p) for p in (
+    "~/.vscode-server/extensions", "~/.vscode-server-insiders/extensions")]
+MARK = "RHP-PATCH"
+MUSL = 'require("fs").readdirSync("/lib").some(f=>f.startsWith("ld-musl"))'
+
+# (patrón original, sustitución): wrapper legible y versión minificada inline
+PATCHES = [
+    ("const isMusl = process.report.getReport().header.glibcVersionRuntime == null;",
+     "const _rptHeader = process.report?.getReport?.()?.header; /* RHP-PATCH */ "
+     "const isMusl = _rptHeader ? _rptHeader.glibcVersionRuntime == null : "
+     "(() => { try { return " + MUSL + "; } catch (e) { return false; } })();"),
+    ('const e=null==process.report.getReport().header.glibcVersionRuntime?"musl":"gnu";',
+     'const e=(()=>{/* RHP-PATCH */const h=process.report?.getReport?.()?.header;'
+     'if(h)return null==h.glibcVersionRuntime;'
+     'try{return ' + MUSL + '}catch(x){return!1}})()?"musl":"gnu";'),
+]
+
+
+def candidates():
+    for base in EXT_DIRS:
+        for pat in ("sap*/dist/*.js", "sap*/dist/*.cjs"):
+            yield from sorted(glob.glob(os.path.join(base, pat)))
+
+
+def main():
+    mode = sys.argv[1] if len(sys.argv) > 1 else "--apply"
+    if mode not in ("--apply", "--check", "--restore"):
+        print(__doc__)
+        return 2
+    rc = 0
+    for path in candidates():
+        backup = path + ".rhp-orig"
+        name = os.path.relpath(path, os.path.dirname(os.path.dirname(os.path.dirname(path))))
+        if mode == "--restore":
+            if os.path.exists(backup):
+                shutil.move(backup, path)
+                print("restaurado:   ", name)
+            continue
+        with open(path, encoding="utf-8") as f:
+            src = f.read()
+        if MARK in src:
+            print("ya parcheado: ", name)
+            continue
+        hits = [(old, new) for old, new in PATCHES if old in src]
+        if not hits and "process.report.getReport().header" in src:
+            print("PATRÓN DESCONOCIDO (revisar a mano):", name)
+            rc = 1
+            continue
+        if not hits:
+            continue
+        if mode == "--check":
+            print("necesita parche:", name)
+            continue
+        if not os.path.exists(backup):
+            shutil.copy2(path, backup)
+        for old, new in hits:
+            src = src.replace(old, new)
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(src)
+        print("parcheado:    ", name)
+    if mode != "--check":
+        print("\nRecarga VS Code (Developer: Reload Window) para que tome efecto.")
+    return rc
+
+
+if __name__ == "__main__":
+    sys.exit(main())
