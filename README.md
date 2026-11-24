@@ -11,6 +11,7 @@ Este repositorio **no contiene el código** de los proyectos: solo el maestro de
 | [`repos.txt`](repos.txt) | Maestro de repositorios del proyecto (directorio + URL SSH). |
 | [`sync-repos.sh`](sync-repos.sh) | Script de sincronización para Linux, macOS y WSL. |
 | [`sync-repos.ps1`](sync-repos.ps1) | Script de sincronización para Windows (PowerShell). |
+| [`CLAUDE.md`](CLAUDE.md) | Instrucciones para Claude Code al trabajar en el workspace. |
 | [`.gitignore`](.gitignore) | Excluye los repositorios clonados y el fichero `.env`. |
 
 ## Requisitos
