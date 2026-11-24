@@ -1,0 +1,43 @@
+# Secrets
+.env
+
+# Cloned rhp-ui-* repositories
+rhp-ui-AllergyIntolerance/
+rhp-ui-appointment/
+rhp-ui-clinicalimpression/
+rhp-ui-clinicaloverview/
+rhp-ui-condition/
+rhp-ui-consent/
+rhp-ui-coverage/
+rhp-ui-device/
+rhp-ui-diagnosticreport/
+rhp-ui-document/
+rhp-ui-encounter/
+rhp-ui-eocoverview/
+rhp-ui-episodeofcare/
+rhp-ui-findingprivategroup/
+rhp-ui-flag/
+rhp-ui-injuryreport/
+rhp-ui-locationmaintenance/
+rhp-ui-managediagnosticreport/
+rhp-ui-manageservicerequest/
+rhp-ui-medicationadmin/
+rhp-ui-medicationdispense/
+rhp-ui-medicationrequest/
+rhp-ui-medicationstatement/
+rhp-ui-observation/
+rhp-ui-patient/
+rhp-ui-patienthistory/
+rhp-ui-practitioner/
+rhp-ui-procedure/
+rhp-ui-questionnaireresponse/
+rhp-ui-requestorchestration/
+rhp-ui-requisition/
+rhp-ui-schedule/
+rhp-ui-scheduleadvanceapp/
+rhp-ui-schedulecalendar/
+rhp-ui-servicerequest/
+
+# Other cloned repositories
+rhp-abap-core/
+rhp-docs-development-guide/

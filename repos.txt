@@ -1,0 +1,46 @@
+# Maestro de repositorios del proyecto RHP
+# Formato: <directorio> <url-ssh>
+# Las líneas que empiezan por # y las líneas vacías se ignoran.
+
+# Documentación
+rhp-docs-development-guide       git@github.com:RESULTO-CONSULTORIA-SL/rhp-docs-development-guide.git
+
+# Backend ABAP
+rhp-abap-core                    git@github.com:RESULTO-CONSULTORIA-SL/rhp-abap-core.git
+
+# Aplicaciones UI
+rhp-ui-AllergyIntolerance        git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-AllergyIntolerance.git
+rhp-ui-appointment               git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-appointment.git
+rhp-ui-clinicalimpression        git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-clinicalimpression.git
+rhp-ui-clinicaloverview          git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-clinicaloverview.git
+rhp-ui-condition                 git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-condition.git
+rhp-ui-consent                   git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-consent.git
+rhp-ui-coverage                  git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-coverage.git
+rhp-ui-device                    git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-device.git
+rhp-ui-diagnosticreport          git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-diagnosticreport.git
+rhp-ui-document                  git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-document.git
+rhp-ui-encounter                 git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-encounter.git
+rhp-ui-eocoverview               git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-eocoverview.git
+rhp-ui-episodeofcare             git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-episodeofcare.git
+rhp-ui-findingprivategroup       git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-findingprivategroup.git
+rhp-ui-flag                      git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-flag.git
+rhp-ui-injuryreport              git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-injuryreport.git
+rhp-ui-locationmaintenance       git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-locationmaintenance.git
+rhp-ui-managediagnosticreport    git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-managediagnosticreport.git
+rhp-ui-manageservicerequest      git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-manageservicerequest.git
+rhp-ui-medicationadmin           git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-medicationadmin.git
+rhp-ui-medicationdispense        git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-medicationdispense.git
+rhp-ui-medicationrequest         git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-medicationrequest.git
+rhp-ui-medicationstatement       git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-medicationstatement.git
+rhp-ui-observation               git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-observation.git
+rhp-ui-patient                   git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-patient.git
+rhp-ui-patienthistory            git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-patienthistory.git
+rhp-ui-practitioner              git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-practitioner.git
+rhp-ui-procedure                 git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-procedure.git
+rhp-ui-questionnaireresponse     git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-questionnaireresponse.git
+rhp-ui-requestorchestration      git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-requestorchestration.git
+rhp-ui-requisition               git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-requisition.git
+rhp-ui-schedule                  git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-schedule.git
+rhp-ui-scheduleadvanceapp        git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-scheduleadvanceapp.git
+rhp-ui-schedulecalendar          git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-schedulecalendar.git
+rhp-ui-servicerequest            git@github.com:RESULTO-CONSULTORIA-SL/rhp-ui-servicerequest.git
