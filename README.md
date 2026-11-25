@@ -1,4 +1,4 @@
-# RHP — Entorno de trabajo
+# RHP - Entorno de trabajo
 
 Repositorio raíz que agrupa todos los repositorios del proyecto RHP en un único directorio de trabajo.
 
