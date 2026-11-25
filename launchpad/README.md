@@ -6,7 +6,7 @@ aplicaciones sin desplegar nada.
 
 ## Requisitos
 
-- Node.js 20 o superior.
+- Node.js 22.15 o superior (por `--use-system-ca`, ver [Certificados](#certificados-y-proxy-corporativo)).
 - Los repositorios clonados con `./sync-repos.sh` (o `sync-repos.ps1`) desde la raíz del workspace.
 - Para el modo con backend: acceso a `rstls4h.resultoconsultoria.com:44300` y un usuario del cliente 100.
 
@@ -57,6 +57,20 @@ Al arrancar, el generador lista lo que no puede resolver:
 - **Outbounds sin destino**: la aplicación navega a un intent que no declara ninguna aplicación del
   workspace, así que esa navegación falla también en local.
 - **Aplicaciones sin `ui5-mock.yaml`**: en `start-mock` sus servicios no responden.
+
+## Certificados y proxy corporativo
+
+Los proxies con inspección TLS (Netskope, Zscaler…) firman `ui5.sap.com` con una CA corporativa
+que Windows tiene instalada pero Node no. Sin ella, el proxy de UI5 falla con
+`self-signed certificate in certificate chain` y `fiori-tools-preview` avisa de
+`Could not get UI5 version of application` (no puede leer `sap-ui-version.json`).
+
+Por eso [`.npmrc`](.npmrc) define `node-options=--use-system-ca`: npm lo pasa como `NODE_OPTIONS`
+a `npm start` y `npm run start-mock`, y Node confía también en las CA del sistema operativo. Si
+lanzas `fiori run` sin npm, añade tú `NODE_OPTIONS=--use-system-ca`.
+
+No uses `ignoreCertErrors: true` ni `NODE_TLS_REJECT_UNAUTHORIZED=0` para resolverlo: desactivan
+la validación de certificados en lugar de añadir la CA.
 
 ## Limitaciones
 
